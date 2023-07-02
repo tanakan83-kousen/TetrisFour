@@ -21,8 +21,8 @@ void Board::bInitialize() {
 			sboard[i][j] = "null";
 			boardPos[i][j].x = 80 + t.mass * j;
 			boardPos[i][j].y = 70 + t.mass * i;
-			boardPos[i][j].w = 100;
-			boardPos[i][j].h = 100;
+			boardPos[i][j].w = 90;
+			boardPos[i][j].h = 90;
 		}
 	}
 	for (int i = 0; i < 4; i++) {
@@ -156,12 +156,12 @@ bool Board::check4Connect(int i, int j, string s) {
 
 void Board::Holizon(int i, int j,int left,int right) {
 	int p = 0;
-	rboardPos[p].x = 105 + t.mass * j, rboardPos[p].y = 95 + t.mass * i;
+	rboardPos[p].x = 100 + t.mass * j, rboardPos[p].y = 90 + t.mass * i;
 	rsboard[p] = "white";
 	p++;
 	int xj = j, yi = i;
 	while (left > 0) {
-		rboardPos[p].x = 105 + t.mass * (xj - 1), rboardPos[p].y = 95 + t.mass * i;
+		rboardPos[p].x = 100 + t.mass * (xj - 1), rboardPos[p].y = 90 + t.mass * i;
 		rsboard[p] = "white";
 		xj--;
 		left--;
@@ -169,7 +169,7 @@ void Board::Holizon(int i, int j,int left,int right) {
 	}
 	xj = j, yi = i;
 	while (right > 0) {
-		rboardPos[p].x = 105 + t.mass * (xj + 1), rboardPos[p].y = 95 + t.mass * i;
+		rboardPos[p].x = 100 + t.mass * (xj + 1), rboardPos[p].y = 90 + t.mass * i;
 		rsboard[p] = "white";
 		xj++;
 		right--;
@@ -179,12 +179,12 @@ void Board::Holizon(int i, int j,int left,int right) {
 
 void Board::Vertical(int i,int j,int up, int down) {
 	int p = 0;
-	rboardPos[p].x = 105 + t.mass * j, rboardPos[p].y = 95 + t.mass * i;
+	rboardPos[p].x = 100 + t.mass * j, rboardPos[p].y = 90 + t.mass * i;
 	rsboard[p] = "white";
 	p++;
 	int xj = j, yi = i;
 	while (up > 0) {
-		rboardPos[p].x = 105 + t.mass * xj, rboardPos[p].y = 95 + t.mass * (yi - 1);
+		rboardPos[p].x = 100 + t.mass * xj, rboardPos[p].y = 90 + t.mass * (yi - 1);
 		rsboard[p] = "white";
 		yi--;
 		up--;
@@ -192,7 +192,7 @@ void Board::Vertical(int i,int j,int up, int down) {
 	}
 	xj = j, yi = i;
 	while (down > 0) {
-		rboardPos[p].x = 105 + t.mass * xj, rboardPos[p].y = 95 + t.mass * (yi + 1);
+		rboardPos[p].x = 100 + t.mass * xj, rboardPos[p].y = 90 + t.mass * (yi + 1);
 		rsboard[p] = "white";
 		yi++;
 		down--;
@@ -202,12 +202,12 @@ void Board::Vertical(int i,int j,int up, int down) {
 
 void Board::RDiagonal(int i,int j, int Rdown, int Lup) {
 	int p = 0;
-	rboardPos[p].x = 105 + t.mass * j, rboardPos[p].y = 95 + t.mass * i;
+	rboardPos[p].x = 100 + t.mass * j, rboardPos[p].y = 90 + t.mass * i;
 	rsboard[p] = "white";
 	p++;
 	int xj = j, yi = i;
 	while (Rdown > 0) {
-		rboardPos[p].x = 105 + t.mass * (xj + 1), rboardPos[p].y = 95 + t.mass * (yi + 1);
+		rboardPos[p].x = 100 + t.mass * (xj + 1), rboardPos[p].y = 90 + t.mass * (yi + 1);
 		rsboard[p] = "white";
 		xj++;
 		yi++;
@@ -216,7 +216,7 @@ void Board::RDiagonal(int i,int j, int Rdown, int Lup) {
 	}
 	xj = j, yi = i;
 	while (Lup > 0) {
-		rboardPos[p].x = 105 + t.mass * (xj - 1), rboardPos[p].y = 95 + t.mass * (yi - 1);
+		rboardPos[p].x = 100 + t.mass * (xj - 1), rboardPos[p].y = 90 + t.mass * (yi - 1);
 		rsboard[p] = "white";
 		xj--;
 		yi--;
@@ -227,12 +227,12 @@ void Board::RDiagonal(int i,int j, int Rdown, int Lup) {
 
 void Board::LDiagonal(int i,int j, int Ldown, int Rup) {
 	int p = 0;
-	rboardPos[p].x = 105 + t.mass * j, rboardPos[p].y = 95 + t.mass * i;
+	rboardPos[p].x = 100 + t.mass * j, rboardPos[p].y = 90 + t.mass * i;
 	rsboard[p] = "white";
 	p++;
 	int xj = j, yi = i;
 	while (Ldown > 0) {
-		rboardPos[p].x = 105 + t.mass * (xj - 1), rboardPos[p].y = 95 + t.mass * (yi + 1);
+		rboardPos[p].x = 100 + t.mass * (xj - 1), rboardPos[p].y = 90 + t.mass * (yi + 1);
 		rsboard[p] = "white";
 		xj--;
 		yi++;
@@ -241,7 +241,7 @@ void Board::LDiagonal(int i,int j, int Ldown, int Rup) {
 	}
 	xj = j, yi = i;
 	while (Rup > 0) {
-		rboardPos[p].x = 105 + t.mass * (xj + 1), rboardPos[p].y = 95 + t.mass * (yi - 1);
+		rboardPos[p].x = 100 + t.mass * (xj + 1), rboardPos[p].y = 90 + t.mass * (yi - 1);
 		rsboard[p] = "white";
 		xj++;
 		yi--;

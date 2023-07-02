@@ -90,7 +90,7 @@ void tetofour::Start(int No) {
 		"Start",//タイトル
 		width / 5,//左上のx
 		height / 3,//左上のy
-		width,//幅
+		int(width * 1.15),//幅
 		height / 2,//高さ
 		0//フラグ
 	);
@@ -207,7 +207,7 @@ int tetofour::Finish() {
 		"Finish",//タイトル
 		width / 5,//左上のx
 		height / 5,//左上のy
-		int(width * 0.85),//幅
+		int(width * 0.95),//幅
 		height / 4,//高さ
 		0//フラグ
 	);
@@ -308,7 +308,7 @@ void tetofour::Display() {
 	}
 	wall.x = Wrange;
 	wall.h = 5;
-	wall.w = width - Wrange * 2;
+	wall.w = width - Wrange * 2 + 5;
 	for (int i = Hrange; i <= height - Hrange; i += mass) {
 		wall.y = i;
 		SDL_RenderFillRect(mRenderer, &wall);
@@ -372,8 +372,7 @@ void tetofour::ProcessInput() {
 			break;
 		}
 	}
-		
-	//cout << mode << endl;
+	
 	if (mode == 1) {
 		if (click) {
 			Player p(t, b);
