@@ -21,14 +21,14 @@ void Board::bInitialize() {
 			sboard[i][j] = "null";
 			boardPos[i][j].x = 80 + t.mass * j;
 			boardPos[i][j].y = 70 + t.mass * i;
-			boardPos[i][j].w = 90;
-			boardPos[i][j].h = 90;
+			boardPos[i][j].w = 80;
+			boardPos[i][j].h = 80;
 		}
 	}
 	for (int i = 0; i < 4; i++) {
 		rsboard[i] = "null";
-		rboardPos[i].w = 50;
-		rboardPos[i].h = 50;
+		rboardPos[i].w = 40;
+		rboardPos[i].h = 40;
 	}
 }
 

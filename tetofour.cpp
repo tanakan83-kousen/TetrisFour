@@ -207,7 +207,7 @@ int tetofour::Finish() {
 		"Finish",//タイトル
 		width / 5,//左上のx
 		height / 5,//左上のy
-		int(width * 0.95),//幅
+		width,//幅
 		height / 4,//高さ
 		0//フラグ
 	);
