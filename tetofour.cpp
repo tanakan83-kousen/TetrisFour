@@ -87,12 +87,12 @@ void tetofour::Start(int No) {
 	}
 
 	sWindow = SDL_CreateWindow(
-		"Start",//タイトル
-		width / 5,//左上のx
-		height / 3,//左上のy
-		int(width * 1.15),//幅
-		height / 2,//高さ
-		0//フラグ
+		"Start",
+		width / 5,
+		height / 3,
+		int(width * 1.15),
+		height / 2,
+		0
 	);
 	if (!sWindow) {
 		SDL_Log("Failed to create sWindow : %s", SDL_GetError());
@@ -114,12 +114,15 @@ void tetofour::Start(int No) {
 		SDL_Log("Failed to Open TTF: %s", SDL_GetError());
 		return ;
 	}
+	//モードの選択
 	if (No == 1) {
 		sSurface = TTF_RenderUTF8_Blended(font, "Player : P  Cpu : C", { 255, 255, 255, 255 });
 	}
+	//先攻後攻の選択
 	else if (No == 2) {
 		sSurface = TTF_RenderUTF8_Blended(font, "first : 1  second : 2", { 255, 255, 255, 255 });
 	}
+	//Cpuレベルの選択
 	else if (No == 3) {
 		sSurface = TTF_RenderUTF8_Blended(font, "Easy : E  Normal : N Hard : H", { 255, 255, 255, 255 });
 	}
@@ -178,13 +181,13 @@ void tetofour::Start(int No) {
 		else if (No == 3) {
 			if (state[SDL_SCANCODE_E])
 			{
-				level = 50;
+				level = EASY;
 			}
 			else if (state[SDL_SCANCODE_N]) {
-				level = 800;
+				level = NORMAL;
 			}
 			else if (state[SDL_SCANCODE_H]) {
-				level = 3000;
+				level = HARD;
 			}
 
 			if (level != 0) break;
@@ -204,12 +207,12 @@ int tetofour::Finish() {
 	}
 
 	fWindow = SDL_CreateWindow(
-		"Finish",//タイトル
-		width / 5,//左上のx
-		height / 5,//左上のy
-		width,//幅
-		height / 4,//高さ
-		0//フラグ
+		"Finish",
+		width / 5,
+		height / 5,
+		width,
+		height / 4,
+		0
 	);
 	if (!fWindow) {
 		SDL_Log("Failed to create fWindow : %s", SDL_GetError());
@@ -301,7 +304,7 @@ void tetofour::Display() {
 		height - Hrange * 2//縦幅
 	};
 
-	//枠線を引く(縦6×横7、1マス120×120)
+	//枠線を引く(縦6×横7、1マス100×100)
 	for (int i = Wrange; i <= width - Wrange; i += mass) {
 		wall.x = i;
 		SDL_RenderFillRect(mRenderer, &wall);
@@ -323,11 +326,12 @@ void tetofour::Display() {
 	red = SDL_LoadBMP("img\\red.bmp");
 	RedTex = SDL_CreateTextureFromSurface(mRenderer, red);
 	SDL_FreeSurface(red);
-	
+	//白(リザルト用)駒の設定
 	white = SDL_LoadBMP("img\\white.bmp");
 	whiteTex = SDL_CreateTextureFromSurface(mRenderer, white);
 	SDL_FreeSurface(white) ;
 
+	//駒の描画
 	for (int i = 0; i < 6; i++) {
 		for (int j = 0; j < 7; j++) {
 			if (b.sboard[i][j] == "red") {
@@ -343,6 +347,7 @@ void tetofour::Display() {
 		}
 	}
 	
+	//白駒の描画
 	for (int i = 0; i < 4; i++) {
 		if (b.rsboard[i] == "white") {
 			SDL_RenderCopy(mRenderer, whiteTex, nullptr, &b.rboardPos[i]);
@@ -362,6 +367,7 @@ void tetofour::ProcessInput() {
 		case SDL_KEYDOWN:
 			break;
 
+		//クリックされたら
 		case SDL_MOUSEBUTTONDOWN:
 			SDL_GetMouseState(&mouse_position.x, &mouse_position.y);
 			click = true;
@@ -372,13 +378,14 @@ void tetofour::ProcessInput() {
 			break;
 		}
 	}
-	
+	//対人
 	if (mode == 1) {
 		if (click) {
 			Player p(t, b);
 			 mIsRunning = p.Run(mouse_position.x, mouse_position.y,turn);
 		}
 	}
+	//対cpu
 	else if (mode == 2) {
 		if (turn == myturn) {
 			if (click) {
@@ -418,12 +425,12 @@ void tetofour::Result(int turn) {
 	}
 
 	rWindow = SDL_CreateWindow(
-		"Result",//タイトル
-		width /3,//左上のx
-		height/3,//左上のy
-		width / 2,//幅
-		height / 4,//高さ
-		0//フラグ
+		"Result",
+		width /3,
+		height/3,
+		width / 2,
+		height / 4,
+		0
 	);
 	if (!rWindow) {
 		SDL_Log("Failed to create rWindow : %s", SDL_GetError());

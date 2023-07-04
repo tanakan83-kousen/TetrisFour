@@ -78,20 +78,19 @@ void Player::eDisplay() {
 		SDL_Log("Failed to TTF Init %s", SDL_GetError());
 		return;
 	}
-	//エラーウィンドウ作成
+	
 	eWindow = SDL_CreateWindow(
-		"e",//タイトル
-		t.width / 3,//左上のx
-		t.height / 3,//左上のy
-		t.width / 2,//幅
-		t.height / 4,//高さ
-		0//フラグ
+		"Error",
+		t.width / 3,
+		t.height / 3,
+		t.width / 2,
+		t.height / 4,
+		0
 	);
 	if (!eWindow) {
 		SDL_Log("Failed to create eWindow : %s", SDL_GetError());
 		return;
 	}
-	//エラーレンダラー作成
 	eRenderer = SDL_CreateRenderer(
 		eWindow,
 		-1,

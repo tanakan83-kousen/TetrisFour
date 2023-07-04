@@ -60,7 +60,7 @@ bool Cpu::Run(int &turn,int level) {
 }
 
 void Cpu::Montecarlo(int depth) {
-	//cout << depth << endl;
+	//難易度によって繰り返す
 	if (depth >= max_depth) return;
 	Play(depth);
 	Montecarlo(depth + 1);
@@ -68,14 +68,10 @@ void Cpu::Montecarlo(int depth) {
 
 void Cpu::Play(int &depth) {
 	Board copyboard = b;
-	//Cpu userCpu(t, copyboard);
-	//Cpu Cpu(t, copyboard);
-
+	
 	int cputurn = t.myturn * -1;
 	string users;
 	string cpus;
-	int n = Random(copyboard);
-
 	if (cputurn == 1) {
 		cpus = "red";
 		users = "blue";
@@ -84,12 +80,16 @@ void Cpu::Play(int &depth) {
 		cpus = "blue";
 		users = "red";
 	}
+
+	//最初の一手はランダムに決め打ちする
+	int n = Random(copyboard);
 	copyboard.sboard[put[n].i][put[n].j] = cpus;
+
 	int firsti = put[n].i, firstj = put[n].j;
 	depth += 7;
-
 	while (true) {
 		if (copyboard.check4Connect(put[n].i, put[n].j, cpus)) {
+			//cpuが勝利したらスコアをプラス
 			score[firsti][firstj] += 1;
 			break;
 		}
