@@ -34,6 +34,7 @@ EasyならEキーを、NormalならNキーを、HardならHキーを入力して
 ![TetoFour 2023_07_01 23_40_49](https://github.com/tanakan83-kousen/TetrisFour/assets/111548773/f9b95aa2-9fd5-4343-b9c6-e8887ef8de62)
 
 ### 5.ゲーム終了
-もう一度ゲームをする場合は1キーを、終了する場合は2キーを入力してください。先ほどと同様、テンキーではなくメインのキーで入力してください。
+もう一度ゲームをする場合は1キーを、終了する場合は2キーを入力してください。<br>
+先ほどと同様、テンキーではなくメインのキーで入力してください。
 ![TetoFour 2023_07_01 23_41_06](https://github.com/tanakan83-kousen/TetrisFour/assets/111548773/5f15df10-437b-4687-8372-416fa35438ee)
 
