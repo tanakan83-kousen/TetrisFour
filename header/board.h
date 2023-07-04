@@ -14,9 +14,13 @@ public:
 	bool checkPut(int i, int j);
 	//4つ揃っているか
 	bool check4Connect(int i, int j, string s);
+
+	//ボード
 	vector<vector<string>> sboard;
 	vector<vector<SDL_Texture*>> board;
 	vector<vector<SDL_Rect>> boardPos;
+
+	//リザルトボード
 	vector<SDL_Texture*> rboard;
 	vector<string> rsboard;
 	vector<SDL_Rect> rboardPos;

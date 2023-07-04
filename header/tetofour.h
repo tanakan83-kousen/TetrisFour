@@ -8,6 +8,7 @@ class tetofour
 {
 public:
 	tetofour();
+	//最初の設定を選択
 	void Start(int No);
 	//初期化関数
 	bool Initialize();
@@ -31,11 +32,13 @@ public:
 	int mode = 0;//1:対人 2:対cpu
 
 	int level = 0; //cpuのレベル
-
+	#define EASY 50
+	#define NORMAL 800
+	#define HARD 3000
 	//ウィンドウの縦幅
-	const int height = 840;
+	const int height = 720;
 	//ウィンドウの横幅
-	const int width = 980;
+	const int width = 840;
 
 	//枠外の幅
 	const int Hrange = 60;
