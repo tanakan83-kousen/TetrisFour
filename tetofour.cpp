@@ -7,7 +7,7 @@ using namespace std;
 tetofour t;
 Board b(t);
 
-//main
+
 tetofour::tetofour()
 	:mWindow(nullptr)
 	, mRenderer(nullptr)
