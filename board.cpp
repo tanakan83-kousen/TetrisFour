@@ -2,6 +2,7 @@
 
 using namespace std;
 
+//ƒ{[ƒhˆ—
 Board::Board(tetofour &t)
 	:sboard(6, vector<string>(7))
 	, board(6, vector<SDL_Texture*>(7))
