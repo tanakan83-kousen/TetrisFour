@@ -7,6 +7,7 @@ using namespace std;
 tetofour t;
 Board b(t);
 
+//main
 tetofour::tetofour()
 	:mWindow(nullptr)
 	, mRenderer(nullptr)
@@ -38,7 +39,7 @@ tetofour::tetofour()
 
 bool tetofour::Initialize()
 {
-	//sdl‚Ì‰Šú‰»
+	//sdlã®åˆæœŸåŒ–
 	int sdlResult = SDL_Init(SDL_INIT_VIDEO);
 	if (sdlResult != 0) {
 		SDL_Log("Failed to SDL Init:%s", SDL_GetError());
@@ -49,38 +50,38 @@ bool tetofour::Initialize()
 	SDL_WINDOWPOS_CENTERED
 	};
 
-	//ƒƒCƒ“ƒEƒBƒ“ƒhƒEì¬
+	//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½œæˆ
 	mWindow = SDL_CreateWindow(
-		"TetoFour",//ƒ^ƒCƒgƒ‹
-		100,//¶ã‚Ìx
-		50,//¶ã‚Ìy
-		width,//•
-		height,//‚‚³
-		0//ƒtƒ‰ƒO
+		"TetoFour",//ã‚¿ã‚¤ãƒˆãƒ«
+		100,//å·¦ä¸Šã®x
+		50,//å·¦ä¸Šã®y
+		width,//å¹…
+		height,//é«˜ã•
+		0//ãƒ•ãƒ©ã‚°
 	);
 	if (!mWindow) {
 		SDL_Log("Failed to create mwindow : %s", SDL_GetError());
 		return false;
 	}
 
-	//ƒƒCƒ“ƒŒƒ“ƒ_ƒ‰[ì¬
+	//ãƒ¡ã‚¤ãƒ³ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ä½œæˆ
 	mRenderer = SDL_CreateRenderer(
 		mWindow,
 		-1,
-		SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC //ƒtƒ‰ƒO
+		SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC //ãƒ•ãƒ©ã‚°
 	);
 	if (!mRenderer) {
 		SDL_Log("Failed to create mrenderer: %s", SDL_GetError());
 		return false;
 	}
-	//‹î‚Ìİ’è
+	//é§’ã®è¨­å®š
 	b.bInitialize();
 	mIsRunning = true;
 	return true;
 }
 
 void tetofour::Start(int No) {
-	//ttf‚ÌŠJn
+	//ttfã®é–‹å§‹
 	int ttfresult = TTF_Init();
 	if (ttfresult != 0) {
 		SDL_Log("Failed to TTF Init: %s", SDL_GetError());
@@ -102,7 +103,7 @@ void tetofour::Start(int No) {
 	sRenderer = SDL_CreateRenderer(
 		sWindow,
 		-1,
-		SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC //ƒtƒ‰ƒO
+		SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC //ãƒ•ãƒ©ã‚°
 	);
 	if (!sRenderer) {
 		SDL_Log("Failed to create sRenderer: %s", SDL_GetError());
@@ -114,15 +115,15 @@ void tetofour::Start(int No) {
 		SDL_Log("Failed to Open TTF: %s", SDL_GetError());
 		return ;
 	}
-	//ƒ‚[ƒh‚Ì‘I‘ğ
+	//ãƒ¢ãƒ¼ãƒ‰ã®é¸æŠ
 	if (No == 1) {
 		sSurface = TTF_RenderUTF8_Blended(font, "Player : P  Cpu : C", { 255, 255, 255, 255 });
 	}
-	//æUŒãU‚Ì‘I‘ğ
+	//å…ˆæ”»å¾Œæ”»ã®é¸æŠ
 	else if (No == 2) {
 		sSurface = TTF_RenderUTF8_Blended(font, "first : 1  second : 2", { 255, 255, 255, 255 });
 	}
-	//CpuƒŒƒxƒ‹‚Ì‘I‘ğ
+	//Cpuãƒ¬ãƒ™ãƒ«ã®é¸æŠ
 	else if (No == 3) {
 		sSurface = TTF_RenderUTF8_Blended(font, "Easy : E  Normal : N Hard : H", { 255, 255, 255, 255 });
 	}
@@ -222,7 +223,7 @@ int tetofour::Finish() {
 	fRenderer = SDL_CreateRenderer(
 		fWindow,
 		-1,
-		SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC //ƒtƒ‰ƒO
+		SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC //ãƒ•ãƒ©ã‚°
 	);
 	if (!fRenderer) {
 		SDL_Log("Failed to create rRenderer: %s", SDL_GetError());
@@ -290,7 +291,7 @@ void tetofour::Display() {
 		224,//r
 		255,//g
 		255,//b
-		255//a...“§–¾Š´
+		255//a...é€æ˜æ„Ÿ
 	);
 
 	SDL_RenderClear(mRenderer);
@@ -298,13 +299,13 @@ void tetofour::Display() {
 	SDL_SetRenderDrawColor(mRenderer, 0, 0, 0, 255);
 
 	SDL_Rect wall{
-		Wrange,//¶ãx
-		Hrange,//¶ãy
-		5,//‰¡•
-		height - Hrange * 2//c•
+		Wrange,//å·¦ä¸Šx
+		Hrange,//å·¦ä¸Šy
+		5,//æ¨ªå¹…
+		height - Hrange * 2//ç¸¦å¹…
 	};
 
-	//˜gü‚ğˆø‚­(c6~‰¡7A1ƒ}ƒX100~100)
+	//æ ç·šã‚’å¼•ã(ç¸¦6Ã—æ¨ª7ã€1ãƒã‚¹100Ã—100)
 	for (int i = Wrange; i <= width - Wrange; i += mass) {
 		wall.x = i;
 		SDL_RenderFillRect(mRenderer, &wall);
@@ -317,21 +318,21 @@ void tetofour::Display() {
 		SDL_RenderFillRect(mRenderer, &wall);
 	}
 
-	//Â‚Ì‹î‚ğİ’è
+	//é’ã®é§’ã‚’è¨­å®š
 	blue = SDL_LoadBMP("img\\blue.bmp");
 	BlueTex = SDL_CreateTextureFromSurface(mRenderer, blue);
 	SDL_FreeSurface(blue);
 
-	//Ô‚Ì‹î‚ğİ’è
+	//èµ¤ã®é§’ã‚’è¨­å®š
 	red = SDL_LoadBMP("img\\red.bmp");
 	RedTex = SDL_CreateTextureFromSurface(mRenderer, red);
 	SDL_FreeSurface(red);
-	//”’(ƒŠƒUƒ‹ƒg—p)‹î‚Ìİ’è
+	//ç™½(ãƒªã‚¶ãƒ«ãƒˆç”¨)é§’ã®è¨­å®š
 	white = SDL_LoadBMP("img\\white.bmp");
 	whiteTex = SDL_CreateTextureFromSurface(mRenderer, white);
 	SDL_FreeSurface(white) ;
 
-	//‹î‚Ì•`‰æ
+	//é§’ã®æç”»
 	for (int i = 0; i < 6; i++) {
 		for (int j = 0; j < 7; j++) {
 			if (b.sboard[i][j] == "red") {
@@ -347,7 +348,7 @@ void tetofour::Display() {
 		}
 	}
 	
-	//”’‹î‚Ì•`‰æ
+	//ç™½é§’ã®æç”»
 	for (int i = 0; i < 4; i++) {
 		if (b.rsboard[i] == "white") {
 			SDL_RenderCopy(mRenderer, whiteTex, nullptr, &b.rboardPos[i]);
@@ -367,7 +368,7 @@ void tetofour::ProcessInput() {
 		case SDL_KEYDOWN:
 			break;
 
-		//ƒNƒŠƒbƒN‚³‚ê‚½‚ç
+		//ã‚¯ãƒªãƒƒã‚¯ã•ã‚ŒãŸã‚‰
 		case SDL_MOUSEBUTTONDOWN:
 			SDL_GetMouseState(&mouse_position.x, &mouse_position.y);
 			click = true;
@@ -378,14 +379,14 @@ void tetofour::ProcessInput() {
 			break;
 		}
 	}
-	//‘Îl
+	//å¯¾äºº
 	if (mode == 1) {
 		if (click) {
 			Player p(t, b);
 			 mIsRunning = p.Run(mouse_position.x, mouse_position.y,turn);
 		}
 	}
-	//‘Îcpu
+	//å¯¾cpu
 	else if (mode == 2) {
 		if (turn == myturn) {
 			if (click) {
@@ -402,13 +403,13 @@ void tetofour::ProcessInput() {
 }
 
 void tetofour::RunLoop() {
-	//ƒ‚[ƒh‘I‘ğ
+	//ãƒ¢ãƒ¼ãƒ‰é¸æŠ
 	Start(1);
-	//‚à‚µ‘Îcpu‚È‚ç
+	//ã‚‚ã—å¯¾cpuãªã‚‰
 	if (mode == 2) {
-		//æUŒãU‘I‘ğ
+		//å…ˆæ”»å¾Œæ”»é¸æŠ
 		Start(2);
-		//cpuƒŒƒxƒ‹‘I‘ğ
+		//cpuãƒ¬ãƒ™ãƒ«é¸æŠ
 		Start(3);
 	}
 	
@@ -440,7 +441,7 @@ void tetofour::Result(int turn) {
 	rRenderer = SDL_CreateRenderer(
 		rWindow,
 		-1,
-		SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC //ƒtƒ‰ƒO
+		SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC //ãƒ•ãƒ©ã‚°
 	);
 	if (!rRenderer) {
 		SDL_Log("Failed to create rRenderer: %s", SDL_GetError());
@@ -452,11 +453,11 @@ void tetofour::Result(int turn) {
 		SDL_Log("Failed to Open TTF: %s", SDL_GetError());
 		return;
 	}
-	//æU‚È‚çÔ‚ÌŸ‚¿
+	//å…ˆæ”»ãªã‚‰èµ¤ã®å‹ã¡
 	if (turn == 1) {
 		rSurface = TTF_RenderUTF8_Blended(font, "Red Win!!", { 255, 255, 255, 255 });
 	}
-	//ŒãU‚È‚çÂ‚ÌŸ‚¿
+	//å¾Œæ”»ãªã‚‰é’ã®å‹ã¡
 	else if (turn == -1) {
 		rSurface = TTF_RenderUTF8_Blended(font, "Blue Win!!", { 255, 255, 255, 255 });
 	}
